@@ -1,0 +1,58 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	reader := bufio.NewReader(os.Stdin) //创建一个读取器
+	// reader := bufio.NewReader(os.Stdin)
+	//input,_ := reader.ReadString("\n")
+	//input = string.TrimSpace(input)
+	//reader := bufio.NewReader(os.Stdin)
+	
+	//var a int
+	//var err string
+	fmt.Println("请输入分数，按回车继续，输入q退出")
+	//a , err := strconv.Atoi(input) 放在这不行，因为还没有输入
+	for {
+
+		input, _ := reader.ReadString('\n') //读取到换行符
+		//a , err := strconv.Atoi(input) 放在这可以，但是没去掉空格还有\n
+		input = strings.TrimSpace(input)    //去掉空格还有换行符
+		
+		if input == "q" || input == "Q" {
+			fmt.Println("程序已退出，再见！")
+			break
+		}
+		//var err error
+		a, err := strconv.Atoi(input) //转换为整数并且变量直接赋值
+
+		if err != nil || a < 0 || a > 100 {
+			fmt.Println("Please input a number 0-100")
+			continue //跳过本次循环，重新开始循环
+		}
+
+		switch a / 10 {
+		case 10, 9:
+			fmt.Println("Your level is A")
+		case 8:
+			fmt.Println("Your level is B")
+		case 7:
+			fmt.Println("Your level is C")
+		case 6:
+			fmt.Println("Your level is D")
+		case 5, 4, 3, 2, 1:
+			fmt.Println("Your level is E")
+		case 0:
+			fmt.Println("Your level is E")
+		default:
+			fmt.Println("Error") //用来兜底
+		}
+		fmt.Println("继续查询请输入分数，结束请输入q")
+	}
+}
