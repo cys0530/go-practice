@@ -1,0 +1,17 @@
+package main
+
+import "fmt"
+
+type Vertex struct {
+	X int
+	Y int
+}
+
+func main() {
+	// 1. 根据图纸（类型）创建一个实例（变量）
+	v := Vertex{1, 2} 
+
+	// 2. 访问这个实例的成员变量
+	v.X = 4
+	fmt.Println(v.X) // 输出: 4
+}
